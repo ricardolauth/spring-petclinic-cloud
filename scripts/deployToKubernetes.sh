@@ -1,4 +1,5 @@
 #!/bin/bash
+#deployToKubernetes.sh
 
 if [ -z "${REPOSITORY_PREFIX}" ]
 then 
