@@ -34,8 +34,8 @@ import reactor.core.publisher.Mono;
 @RequiredArgsConstructor
 public class VisitsServiceClient {
 
-	@Value("${visits-service-id://visits-service}")
-    private String hostname;
+    //visits-service
+    private String hostname = "http://visits-service/";
 
     private final WebClient.Builder webClientBuilder;
 
