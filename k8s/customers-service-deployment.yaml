@@ -8,6 +8,7 @@ metadata:
   name: customers-service
   namespace: spring-petclinic
 spec:
+  revisionHistoryLimit: 0
   replicas: 1
   selector:
     matchLabels:

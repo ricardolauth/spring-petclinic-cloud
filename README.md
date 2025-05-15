@@ -145,7 +145,7 @@ You need to define your target Docker registry. Make sure you're already logged 
 Setup an env variable to target your Docker registry. If you're targeting Docker hub, simple provide your username, for example:
 
 ```bash
-export REPOSITORY_PREFIX=odedia
+export REPOSITORY_PREFIX=ricardolauth09
 ```
 
 For other Docker registries, provide the full URL to your repository, for example:
@@ -178,7 +178,14 @@ docker pull springcommunity/spring-petclinic-cloud-discovery-service
 Create the `spring-petclinic` namespace for Spring petclinic:
 
 ```bash
-kubectl apply -f k8s/init-namespace/
+export PATH=$PATH:/mnt/c/Program\ Files/Docker/Docker/resources/bin &&
+export REPOSITORY_PREFIX=ricardolauth09 &&
+kubectl apply -f k8s/init-namespace/ &&
+helm install vets-db-mysql bitnami/mysql --namespace spring-petclinic --set auth.database=service_instance_db &&
+helm install visits-db-mysql bitnami/mysql --namespace spring-petclinic --set auth.database=service_instance_db &&
+helm install customers-db-mysql bitnami/mysql --namespace spring-petclinic --set auth.database=service_instance_db &&
+helm install invoices-db-mysql bitnami/mysql --namespace spring-petclinic --set auth.database=service_instance_db &&
+./scripts/deployToKubernetes.sh
 ```
 
 Create a Kubernetes secret to store the URL and API Token of Wavefront (replace values with your own real ones):
@@ -232,9 +239,9 @@ Deploy the databases:
 ```bash
 helm repo add bitnami https://charts.bitnami.com/bitnami
 helm repo update
-helm install vets-db-mysql bitnami/mysql --namespace spring-petclinic --set auth.database=service_instance_db
-helm install visits-db-mysql bitnami/mysql --namespace spring-petclinic --set auth.database=service_instance_db
-helm install customers-db-mysql bitnami/mysql --namespace spring-petclinic --set auth.database=service_instance_db
+helm install vets-db-mysql bitnami/mysql --namespace spring-petclinic --set auth.database=service_instance_db &&
+helm install visits-db-mysql bitnami/mysql --namespace spring-petclinic --set auth.database=service_instance_db &&
+helm install customers-db-mysql bitnami/mysql --namespace spring-petclinic --set auth.database=service_instance_db &&
 helm install invoices-db-mysql bitnami/mysql --namespace spring-petclinic --set auth.database=service_instance_db
 ```
 

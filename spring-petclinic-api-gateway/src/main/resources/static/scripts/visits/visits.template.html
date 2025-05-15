@@ -22,11 +22,13 @@
 </form>
 
 <h3>Previous Visits</h3>
+<h1>test</h1>
 <table class="table">
   <tr ng-repeat="v in $ctrl.visits">
     <td class="col-sm-2">{{v.date}}</td>
     <td style="white-space: pre-line">{{v.description}}</td>
-    <a ui-sref="invoice({visitId: visit.id})">Invoice </a>
-    <h1>test</h1>
+    <td>
+      <a ui-sref="invoice({visitId: visit.id})">Invoice </a>
+    </td>
   </tr>
 </table>
