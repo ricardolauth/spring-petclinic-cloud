@@ -146,6 +146,7 @@ Setup an env variable to target your Docker registry. If you're targeting Docker
 
 ```bash
 export REPOSITORY_PREFIX=ricardolauth09
+$env:REPOSITORY_PREFIX = 'ricardolauth09'
 ```
 
 For other Docker registries, provide the full URL to your repository, for example:
@@ -157,9 +158,10 @@ export REPOSITORY_PREFIX=harbor.myregistry.com/demo
 One of the neat features in Spring Boot 2.3 is that it can leverage [Cloud Native Buildpacks](https://buildpacks.io) and [Paketo Buildpacks](https://paketo.io) to build production-ready images for us. Since we also configured the `spring-boot-maven-plugin` to use `layers`, we'll get optimized layering of the various components that build our Spring Boot app for optimal image caching. What this means in practice is that if we simple change a line of code in our app, it would only require us to push the layer containing our code and not the entire uber jar. To build all images and pushing them to your registry, run:
 
 ```bash
-mvn spring-boot:build-image -Pk8s -DREPOSITORY_PREFIX=${REPOSITORY_PREFIX} -DskipTests && ./scripts/pushImages.sh
+mvn spring-boot:build-image -Pk8s -DREPOSITORY_PREFIX=ricardolauth09 -DskipTests && ./scripts/pushImages.sh
 ```
 
+java
 Since these are standalone microservices, you can also `cd` into any of the project folders and build it indivitually (as well as push it to the registry).
 
 You should now have all your images in your Docker registry. It might be good to make sure you can see them available.

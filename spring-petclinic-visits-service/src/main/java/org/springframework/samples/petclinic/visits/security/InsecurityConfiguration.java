@@ -14,7 +14,7 @@ public class InsecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        log.warn("configuring insecure HttpSecurity");
+        //log.warn("configuring insecure HttpSecurity");
         http.
     	authorizeRequests().anyRequest().permitAll()
     	.and()
@@ -24,7 +24,7 @@ public class InsecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        log.warn("configuring insecure WebSecurity");
+        //log.warn("configuring insecure WebSecurity");
         web.ignoring().antMatchers("/**");
     }
 

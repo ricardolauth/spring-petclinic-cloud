@@ -83,7 +83,7 @@ class OwnerResource {
         ownerModel.setCity(ownerRequest.getCity());
         ownerModel.setAddress(ownerRequest.getAddress());
         ownerModel.setTelephone(ownerRequest.getTelephone());
-        log.info("Saving owner {}", ownerModel);
+        //log.info("Saving owner {}", ownerModel);
         ownerRepository.save(ownerModel);
     }
 }
